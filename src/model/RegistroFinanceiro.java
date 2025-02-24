@@ -2,7 +2,7 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 
-class RegistroFinanceiro implements Serializable {
+public class RegistroFinanceiro implements Serializable {
     private int codigo;
     private double valor;
     private String descricao;
