@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MenuApp extends JFrame{
     private JPanel JPanelPrincipal;
@@ -8,7 +9,7 @@ public class MenuApp extends JFrame{
     private JButton btnCadastrarClient;
     private JPanel JPanelButton;
     private JButton btnFinalizar;
-
+    private JLabel labelImg;
 
     public MenuApp(){
         setContentPane(JPanelPrincipal);
@@ -20,11 +21,19 @@ public class MenuApp extends JFrame{
         setIconImage(iconJanela.getImage());
         setTitle("Sistema do Consultor");
         setSize(600,600);
+
+        btnFinalizar.setPreferredSize(new Dimension(150, 40));
+        btnCadastrarProd.setPreferredSize(new Dimension(200, 40));
+        btnCadastrarClient.setPreferredSize(new Dimension(200, 40));
+        ImageIcon original = new ImageIcon("img/icon.png");
+        Image imagem = original.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        labelImg.setIcon(new ImageIcon(imagem));
+
         setResizable(false);
         setLocationRelativeTo(null);
 
         btnCadastrarProd.addActionListener(e -> {
-            ProdutoView telaProduto = new ProdutoView();
+            ProdutoCadastroView telaProduto = new ProdutoCadastroView();
             telaProduto.setSize(300,300);
             telaProduto.setLocationRelativeTo(null);
             setVisible(false);

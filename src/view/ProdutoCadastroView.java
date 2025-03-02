@@ -3,15 +3,15 @@ package view;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class ProdutoView extends JDialog {
+public class ProdutoCadastroView extends JDialog {
     private JPanel contentPane;
     private JButton buttonSalvar;
-    private JButton buttonCancelar;
+    private JButton btnViewProdutos;
     private JTextField campoCodigo;
     private JTextField campoNome;
     private JTextField campoTipo;
 
-    public ProdutoView() {
+    public ProdutoCadastroView() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonSalvar);
@@ -21,7 +21,6 @@ public class ProdutoView extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 if(validarCampos()){
                     System.out.println("Produto salvo: " + campoNome.getText());
-                    onOK();
                 }
 
             }
@@ -39,9 +38,12 @@ public class ProdutoView extends JDialog {
 
         });
 
-        buttonCancelar.addActionListener(new ActionListener() {
+        btnViewProdutos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onCancel();
+                        ProdutosView telaViewProdutos = new ProdutosView();
+                        telaViewProdutos.pack();
+                        telaViewProdutos.setLocationRelativeTo(null);
+                        telaViewProdutos.setVisible(true);
             }
         });
 
@@ -67,18 +69,15 @@ public class ProdutoView extends JDialog {
         dispose();
     }
 
-    private void onCancel() {
-        dispose();
-    }
-
     /*
     public static void main(String[] args) {
         ProdutoView dialog = new ProdutoView();
         //dialog.pack();
-        dialog.setSize(300,300);
+        dialog.setSize(500,500);
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
         System.exit(0);
     }
-     */
+    */
+
 }
