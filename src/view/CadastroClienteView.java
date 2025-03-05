@@ -5,12 +5,13 @@ import javax.swing.text.MaskFormatter;
 import java.awt.event.*;
 import java.text.ParseException;
 
-public class ClienteView extends JDialog {
+public class CadastroClienteView extends JDialog {
     private JPanel contentPane;
     private JButton buttonSalvar;
     private JButton buttonCancelar;
     private JTextField campoNome;
     private JFormattedTextField campFormatCPF;
+    private JButton btnVizualizarClientes;
 
     private void createUIComponents() {
         campFormatCPF = new JFormattedTextField();
@@ -22,7 +23,7 @@ public class ClienteView extends JDialog {
         }
     }
 
-    public ClienteView() {
+    public CadastroClienteView() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonSalvar);

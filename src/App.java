@@ -1,9 +1,7 @@
-import view.ClienteView;
-import view.ProdutoView;
-
 public class App {
     public static void main(String[] args) {
 
+        /* esta sendo usado o menuApp como principal (apagar esse arquivo)
         ProdutoView telaProduto = new ProdutoView();
         telaProduto.setSize(300,300);
         telaProduto.setLocationRelativeTo(null);
@@ -15,6 +13,6 @@ public class App {
         telaCliente.setLocationRelativeTo(null);
         telaCliente.setVisible(true);
         System.exit(0);
-
+         */
     }
 }

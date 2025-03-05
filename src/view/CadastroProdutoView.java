@@ -3,15 +3,16 @@ package view;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class ProdutoView extends JDialog {
+public class CadastroProdutoView extends JDialog {
     private JPanel contentPane;
     private JButton buttonSalvar;
     private JButton buttonCancelar;
     private JTextField campoCodigo;
     private JTextField campoNome;
     private JTextField campoTipo;
+    private JButton btnVizualizarProdutos;
 
-    public ProdutoView() {
+    public CadastroProdutoView() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonSalvar);
@@ -45,22 +46,18 @@ public class ProdutoView extends JDialog {
             }
         });
 
-        /*
-        // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
+
+        btnVizualizarProdutos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ProdutosView telaProdutos = new ProdutosView();
+                setVisible(false);
+                telaProdutos.setSize(400,400);
+                telaProdutos.setLocationRelativeTo(null);
+                telaProdutos.setVisible(true);
+                setVisible(true);
             }
         });
-
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        */
     }
 
     private void onOK() {
@@ -75,7 +72,7 @@ public class ProdutoView extends JDialog {
     public static void main(String[] args) {
         ProdutoView dialog = new ProdutoView();
         //dialog.pack();
-        dialog.setSize(300,300);
+        dialog.setSize(500,500);
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
         System.exit(0);
