@@ -2,6 +2,7 @@ package dao;
 
 import model.Produto;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -39,6 +40,7 @@ public class ProdutoDAO {
         Set<Produto> produtos = getProdutos();
         produtos.add(produto);
         salvarProdutos(produtos);
+        JOptionPane.showMessageDialog(null, "Produto salvo com sucesso!");
     }
 
     public void atualizarProduto(Produto produtoAtualizado) throws IOException, ClassNotFoundException {

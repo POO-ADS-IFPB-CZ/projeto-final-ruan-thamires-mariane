@@ -23,6 +23,8 @@ public class ProdutosView extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         setTitle("Gerenciamento de Produtos");
+        ImageIcon iconJanela = new ImageIcon("src/img/iconJanela.png");
+        setIconImage(iconJanela.getImage());
         setSize(500, 400);
         setLocationRelativeTo(null);
 

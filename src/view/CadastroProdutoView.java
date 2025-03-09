@@ -14,12 +14,14 @@ public class CadastroProdutoView extends JDialog {
     private JTextField campoCodigo;
     private JTextField campoNome;
     private JTextField campoTipo;
-    private JButton btnVizualizarProdutos;
+    private JButton btnVisualizarProdutos;
     private ProdutoDAO produtoDAO;
 
     public CadastroProdutoView() {
         setContentPane(contentPane);
         setModal(true);
+        ImageIcon iconJanela = new ImageIcon("src/img/iconJanela.png");
+        setIconImage(iconJanela.getImage());
         getRootPane().setDefaultButton(buttonSalvar);
         produtoDAO = new ProdutoDAO();
 
@@ -35,15 +37,14 @@ public class CadastroProdutoView extends JDialog {
                     Produto produto = new Produto(cod, nome , tipo);
                     try {
                         produtoDAO.adicionarProduto(produto);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    } catch (ClassNotFoundException ex) {
+                    } catch (IOException | ClassNotFoundException ex) {
                         throw new RuntimeException(ex);
                     }
-
-
-                    onOK();
+                    //onOK();
                 }
+                campoCodigo.setText("");
+                campoNome.setText("");
+                campoTipo.setText("");
 
             }
 
@@ -67,7 +68,7 @@ public class CadastroProdutoView extends JDialog {
         });
 
 
-        btnVizualizarProdutos.addActionListener(new ActionListener() {
+        btnVisualizarProdutos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ProdutosView telaProdutos = new ProdutosView();
@@ -83,19 +84,19 @@ public class CadastroProdutoView extends JDialog {
     private void onOK() {
         dispose();
     }
-
     private void onCancel() {
         dispose();
     }
 
     /*
     public static void main(String[] args) {
-        ProdutoView dialog = new ProdutoView();
+        CadastroProdutoView dialog = new CadastroProdutoView();
         //dialog.pack();
         dialog.setSize(500,500);
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
         System.exit(0);
     }
-     */
+    */
+
 }

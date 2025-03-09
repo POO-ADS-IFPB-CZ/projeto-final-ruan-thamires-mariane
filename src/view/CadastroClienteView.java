@@ -11,7 +11,7 @@ public class CadastroClienteView extends JDialog {
     private JButton buttonCancelar;
     private JTextField campoNome;
     private JFormattedTextField campFormatCPF;
-    private JButton btnVizualizarClientes;
+    private JButton btnVisualizarClientes;
 
     private void createUIComponents() {
         campFormatCPF = new JFormattedTextField();
@@ -27,6 +27,8 @@ public class CadastroClienteView extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonSalvar);
+        ImageIcon iconJanela = new ImageIcon("src/img/iconJanela.png");
+        setIconImage(iconJanela.getImage());
 
         buttonSalvar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -55,41 +57,20 @@ public class CadastroClienteView extends JDialog {
             }
         });
 
-        /*
-        // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
-
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-
-         */
     }
 
-    private void onOK() {
-        // add your code here
-        dispose();
-    }
+    private void onOK() { dispose(); }
 
-    private void onCancel() {
-        // add your code here if necessary
-        dispose();
-    }
+    private void onCancel() { dispose(); }
 
     /*
     public static void main(String[] args) {
-        ClienteView telaCliente = new ClienteView();
-        telaCliente.pack();
+        CadastroClienteView telaCliente = new CadastroClienteView();
+        telaCliente.setSize(500,500);
+        telaCliente.setLocationRelativeTo(null);
         telaCliente.setVisible(true);
         System.exit(0);
     }
-     */
+    */
+
 }

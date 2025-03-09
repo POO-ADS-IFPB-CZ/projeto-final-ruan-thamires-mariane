@@ -2,8 +2,6 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MenuApp extends JFrame{
     private JPanel JPanelPrincipal;
@@ -11,8 +9,8 @@ public class MenuApp extends JFrame{
     private JButton btnCadastrarClient;
     private JPanel JPanelButton;
     private JButton btnFinalizar;
-    private JButton btnVizualizarProdutos;
-    private JButton btnVizualizarClientes;
+    private JButton btnVisualizarProdutos;
+    private JButton btnVisualizarClientes;
 
     private JLabel labelImg;
 
@@ -21,20 +19,16 @@ public class MenuApp extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getRootPane().setDefaultButton(btnFinalizar);
 
-
-        ImageIcon iconJanela = new ImageIcon("img/iconJanela.png");
-        setIconImage(iconJanela.getImage());
         setTitle("Sistema do Consultor");
+        ImageIcon iconJanela = new ImageIcon("src/img/iconJanela.png");
+        setIconImage(iconJanela.getImage());
         setSize(600,600);
 
         btnFinalizar.setPreferredSize(new Dimension(150, 40));
         btnCadastrarProd.setPreferredSize(new Dimension(200, 40));
         btnCadastrarClient.setPreferredSize(new Dimension(200, 40));
-        btnVizualizarClientes.setPreferredSize(new Dimension(200, 40));
-        btnVizualizarProdutos.setPreferredSize(new Dimension(200, 40));
-        //ImageIcon original = new ImageIcon("img/icon.png");
-        //Image imagem = original.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-        //labelImg.setIcon(new ImageIcon(imagem));
+        btnVisualizarClientes.setPreferredSize(new Dimension(200, 40));
+        btnVisualizarProdutos.setPreferredSize(new Dimension(200, 40));
 
         setResizable(false);
         setLocationRelativeTo(null);
@@ -62,7 +56,7 @@ public class MenuApp extends JFrame{
 
         });
 
-        btnVizualizarProdutos.addActionListener(e -> {
+        btnVisualizarProdutos.addActionListener(e -> {
             ProdutosView telaProdutos = new ProdutosView();
             setVisible(false);
             telaProdutos.setSize(400,400);
