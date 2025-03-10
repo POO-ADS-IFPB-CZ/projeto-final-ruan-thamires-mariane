@@ -1,9 +1,12 @@
 package view;
 
+import Controller.ClienteController;
+import view.CadastroClienteView;
+import view.ClientesView;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MenuApp extends JFrame{
     private JPanel JPanelPrincipal;
@@ -13,14 +16,13 @@ public class MenuApp extends JFrame{
     private JButton btnFinalizar;
     private JButton btnVizualizarProdutos;
     private JButton btnVizualizarClientes;
-
     private JLabel labelImg;
+    private ClienteController clienteController;
 
     public MenuApp(){
         setContentPane(JPanelPrincipal);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getRootPane().setDefaultButton(btnFinalizar);
-
 
         ImageIcon iconJanela = new ImageIcon("img/iconJanela.png");
         setIconImage(iconJanela.getImage());
@@ -39,50 +41,45 @@ public class MenuApp extends JFrame{
         setResizable(false);
         setLocationRelativeTo(null);
 
-
         btnCadastrarProd.addActionListener(e -> {
             CadastroProdutoView telaProduto = new CadastroProdutoView();
             telaProduto.setSize(400,400);
             telaProduto.setLocationRelativeTo(null);
-            setVisible(false);
             telaProduto.setVisible(true);
             //dispose(); //fecha o menu
-
-            setVisible(true);
         });
 
-        btnCadastrarClient.addActionListener(e -> {
+        clienteController = new ClienteController();
 
-            CadastroClienteView telaCliente = new CadastroClienteView();
-            setVisible(false);
+        btnCadastrarClient.addActionListener(e -> {
+            CadastroClienteView telaCliente = new CadastroClienteView(clienteController);
             telaCliente.setSize(400,400);
             telaCliente.setLocationRelativeTo(null);
             telaCliente.setVisible(true);
-            setVisible(true);
+        });
 
+        btnVizualizarClientes.addActionListener(e -> {
+                // Abre a tela de listagem de clientes
+                ClientesView dialog = new ClientesView(clienteController);
+                dialog.setSize(500, 300);
+                dialog.setLocationRelativeTo(null);
+                dialog.setVisible(true);
         });
 
         btnVizualizarProdutos.addActionListener(e -> {
             ProdutosView telaProdutos = new ProdutosView();
-            setVisible(false);
             telaProdutos.setSize(400,400);
             telaProdutos.setLocationRelativeTo(null);
             telaProdutos.setVisible(true);
-            setVisible(true);
         });
 
-        btnFinalizar.addActionListener(e -> {
-            dispose();
-        });
-
-
+        btnFinalizar.addActionListener(e -> dispose());
     }
 
     public static void main(String[] args) {
-        MenuApp menu = new MenuApp();
-        menu.setSize(600,600);
-        menu.setVisible(true);
+        SwingUtilities.invokeLater(() -> {
+            MenuApp menu = new MenuApp();
+            menu.setVisible(true);
+        });
     }
-
-
 }

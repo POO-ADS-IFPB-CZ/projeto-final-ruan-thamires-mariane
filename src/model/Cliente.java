@@ -4,18 +4,22 @@ import java.io.Serializable;
 
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
-
     private int codCliente;
+    private String CPF;
     private String nome;
     private String endereco;
     private String telefone;
 
-    public Cliente(int codCliente, String nome, String endereco, String telefone) {
+    public Cliente(int codCliente,String CPF, String nome, String endereco, String telefone) {
         this.codCliente = codCliente;
+        this.CPF = CPF;
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
     }
+
+    public String getCPF() { return CPF; }
+    public void setCPF(String CPF) { this.CPF = CPF; }
 
     public int getCodCliente() { return codCliente; }
     public void setCodCliente(int codCliente) { this.codCliente = codCliente; }
@@ -31,7 +35,10 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente{" + "codCliente=" + codCliente + ", nome='" + nome + '\'' +
-                ", endereco='" + endereco + '\'' + ", telefone='" + telefone + '\'' + '}';
+        return "Cliente{" + "codCliente=" + codCliente +
+                ", nome='" + nome + '\'' +
+                ", CPF='" + CPF + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", telefone='" + telefone + '\'' + '}';
     }
 }
