@@ -1,12 +1,9 @@
 package view;
 
 import Controller.ClienteController;
-import view.CadastroClienteView;
-import view.ClientesView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class MenuApp extends JFrame{
     private JPanel JPanelPrincipal;
@@ -18,9 +15,12 @@ public class MenuApp extends JFrame{
     private JButton btnVisualizarClientes;
 
     private JLabel labelImg;
+    private JButton btnRealizarVenda;
+    private JButton btnVisualizarVendas;
     private ClienteController clienteController;
 
     public MenuApp(){
+        System.out.println();
         setContentPane(JPanelPrincipal);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getRootPane().setDefaultButton(btnFinalizar);
@@ -38,6 +38,8 @@ public class MenuApp extends JFrame{
         btnCadastrarClient.setPreferredSize(new Dimension(200, 40));
         btnVisualizarClientes.setPreferredSize(new Dimension(200, 40));
         btnVisualizarProdutos.setPreferredSize(new Dimension(200, 40));
+        btnRealizarVenda.setPreferredSize(new Dimension(200, 40));
+        btnVisualizarVendas.setPreferredSize(new Dimension(200, 40));
 
         setResizable(false);
         setLocationRelativeTo(null);
@@ -60,11 +62,11 @@ public class MenuApp extends JFrame{
         });
 
         btnVisualizarClientes.addActionListener(e -> {
-                // Abre a tela de listagem de clientes
-                ClientesView dialog = new ClientesView(clienteController);
-                dialog.setSize(500, 300);
-                dialog.setLocationRelativeTo(null);
-                dialog.setVisible(true);
+            // Abre a tela de listagem de clientes
+            ClientesView dialog = new ClientesView(clienteController);
+            dialog.setSize(500, 300);
+            dialog.setLocationRelativeTo(null);
+            dialog.setVisible(true);
         });
 
         btnVisualizarProdutos.addActionListener(e -> {

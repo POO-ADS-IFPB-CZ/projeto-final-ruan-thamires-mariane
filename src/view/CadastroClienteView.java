@@ -40,8 +40,13 @@ public class CadastroClienteView extends JDialog {
                     // Salva o cliente (código 0 indica um novo cliente)
                     clienteController.salvarCliente(0, CPF, nome, endereco, telefone);
                     JOptionPane.showMessageDialog(null, "Cliente salvo com sucesso!");
-                    onOK();
+                    //onOK();
                 }
+                campoCPF.setText("");
+                campoTelefone.setText("");
+                campoNome.setText("");
+                campoEndereco.setText("");
+
             }
 
             private boolean validarCampos() {
@@ -67,23 +72,6 @@ public class CadastroClienteView extends JDialog {
             }
         });
 
-        /*
-        // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
-
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-
-         */
     }
 
     private void onOK() { dispose(); }

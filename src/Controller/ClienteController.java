@@ -11,7 +11,6 @@ public class ClienteController {
     public ClienteController() {
         this.clienteDAO = new ClienteDAO();
     }
-
     // Método para salvar um cliente
     public void salvarCliente(int codCliente, String CPF, String nome, String endereco, String telefone) {
         Cliente cliente = new Cliente(codCliente, CPF, nome, endereco, telefone);

@@ -1,26 +1,26 @@
 package model;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Venda implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    private Cliente cliente;
     private int codVenda;
+    private String cliente;
     private double valor;
     private String descricao;
-    private Date dataRegistro;
+    private LocalDate dataRegistro;
 
-    public Venda(Cliente cliente, int codVenda, double valor, String descricao, Date dataRegistro) {
-        this.cliente = cliente;
+    public Venda(int codVenda, String cliente, double valor, String descricao, LocalDate dataRegistro) {
         this.codVenda = codVenda;
+        this.cliente = cliente;
         this.valor = valor;
         this.descricao = descricao;
-        this.dataRegistro = (dataRegistro != null) ? dataRegistro : new Date(); // Se null, usa a data atual
+        this.dataRegistro = dataRegistro;
     }
 
-    public Cliente getCliente() { return cliente; }
-    public void setCliente(Cliente cliente) { this.cliente = cliente; }
+    public String getCliente() { return cliente; }
+    public void setCliente(String cliente) { this.cliente = cliente; }
 
     public int getCodVenda() { return codVenda; }
     public void setCodVenda(int codVenda) { this.codVenda = codVenda; }
@@ -31,12 +31,12 @@ public class Venda implements Serializable {
     public String getDescricao() { return descricao; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
 
-    public Date getDataRegistro() { return dataRegistro; }
-    public void setDataRegistro(Date dataRegistro) { this.dataRegistro = dataRegistro; }
+    public LocalDate getDataRegistro() { return dataRegistro; }
+    public void setDataRegistro(LocalDate dataRegistro) { this.dataRegistro = dataRegistro; }
 
     @Override
     public String toString() {
-        return "Venda{" + "codVenda=" + codVenda + ", cliente=" + cliente.getNome() +
+        return "Venda{" + "codVenda=" + codVenda + ", cliente=" + cliente +
                 ", valor=" + valor + ", descricao='" + descricao + '\'' +
                 ", dataRegistro=" + dataRegistro + '}';
     }

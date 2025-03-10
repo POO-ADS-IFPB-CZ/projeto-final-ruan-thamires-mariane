@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ClienteDAO {
     private List<Cliente> clientes = new ArrayList<>();
     private int proximoCodigo = 1;

@@ -1,11 +1,22 @@
 package dao;
 
+import model.Produto;
+import model.Venda;
+
+import javax.swing.*;
 import java.io.*;
 import java.util.*;
 
 public class VendaDAO {
     private static final String FILE_NAME = "registro_financeiro.dat";
 
+    public void salvarRegistros(Set<Venda> listVendas) throws IOException {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
+            out.writeObject(listVendas);
+        }
+    }
+
+    /*
     // Cria um registro de uma venda no arquivo
     public void salvarRegistros(model.Venda registro) {
         List<model.Venda> registros = listarTodos(); // Carrega os registros existentes
@@ -13,6 +24,7 @@ public class VendaDAO {
 
         salvarLista(registros);
     }
+     */
 
     // Lê os registros armazenados no arquivo
     public List<model.Venda> listarTodos() {
@@ -79,6 +91,7 @@ public class VendaDAO {
         }
     }
 
+    /*
     // Calcula o total de vendas do consultor por mês
     public double calcularTotalVendasPorMes(int mes, int ano) {
         List<model.Venda> registros = listarTodos();
@@ -97,4 +110,5 @@ public class VendaDAO {
         }
         return total;
     }
+    */
 }
