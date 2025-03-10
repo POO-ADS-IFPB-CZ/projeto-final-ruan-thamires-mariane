@@ -18,6 +18,9 @@ public class ClientesView extends JDialog {
     public ClientesView(ClienteController clienteController) {
         this.clienteController = clienteController;
 
+        ImageIcon iconJanela = new ImageIcon("src/img/iconJanela.png");
+        setIconImage(iconJanela.getImage());
+
         setTitle("Lista de Clientes");
         setSize(500, 300);
         setLocationRelativeTo(null);
@@ -95,5 +98,4 @@ public class ClientesView extends JDialog {
             }
         }
     }
-
 }

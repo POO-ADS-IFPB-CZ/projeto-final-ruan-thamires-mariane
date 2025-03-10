@@ -13,10 +13,10 @@ public class CadastroClienteView extends JDialog {
     private JButton buttonCancelar;
     private JTextField campoNome;
     private JFormattedTextField campoCPF;
-    private JButton btnVizualizarClientes;
     private JTextField campoEndereco;
     private JFormattedTextField campoTelefone;
     private ClienteController clienteController;
+    private JButton btnVisualizarClientes;
 
     public CadastroClienteView(ClienteController clienteController) {
         this.clienteController = clienteController; //Inicializa o controller
@@ -24,6 +24,8 @@ public class CadastroClienteView extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonSalvar);
+        ImageIcon iconJanela = new ImageIcon("src/img/iconJanela.png");
+        setIconImage(iconJanela.getImage());
 
         configurarMascaras(); // Chama o método para formatar CPF e Telefone
 
@@ -57,7 +59,7 @@ public class CadastroClienteView extends JDialog {
             }
         });
 
-        btnVizualizarClientes.addActionListener(new ActionListener() {
+        btnVisualizarClientes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Abre a tela de listagem de clientes
                 ClientesView clientesView = new ClientesView(clienteController);
@@ -84,18 +86,13 @@ public class CadastroClienteView extends JDialog {
          */
     }
 
-    private void onOK() {
-        // add your code here
-        dispose();
-    }
+    private void onOK() { dispose(); }
 
-    private void onCancel() {
-        // add your code here if necessary
-        dispose();
-    }
+    private void onCancel() { dispose(); }
 
     /*
     public static void main(String[] args) {
+<<<<<<< HEAD
         ClienteController clienteController = new ClienteController(); // Cria o controller
         CadastroClienteView dialog = new CadastroClienteView(clienteController); // Passa o controller para a view
         dialog.pack();
@@ -121,6 +118,10 @@ public class CadastroClienteView extends JDialog {
             JOptionPane.showMessageDialog(null, "Erro ao aplicar máscara!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-
+        /*CadastroClienteView telaCliente = new CadastroClienteView();
+        telaCliente.setSize(500,500);
+        telaCliente.setLocationRelativeTo(null);
+        telaCliente.setVisible(true);
+        System.exit(0);
+    */
 }

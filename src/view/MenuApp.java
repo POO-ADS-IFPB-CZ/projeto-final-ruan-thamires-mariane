@@ -14,8 +14,9 @@ public class MenuApp extends JFrame{
     private JButton btnCadastrarClient;
     private JPanel JPanelButton;
     private JButton btnFinalizar;
-    private JButton btnVizualizarProdutos;
-    private JButton btnVizualizarClientes;
+    private JButton btnVisualizarProdutos;
+    private JButton btnVisualizarClientes;
+
     private JLabel labelImg;
     private ClienteController clienteController;
 
@@ -26,17 +27,17 @@ public class MenuApp extends JFrame{
 
         ImageIcon iconJanela = new ImageIcon("img/iconJanela.png");
         setIconImage(iconJanela.getImage());
+
         setTitle("Sistema do Consultor");
+        iconJanela = new ImageIcon("src/img/iconJanela.png");
+        setIconImage(iconJanela.getImage());
         setSize(600,600);
 
         btnFinalizar.setPreferredSize(new Dimension(150, 40));
         btnCadastrarProd.setPreferredSize(new Dimension(200, 40));
         btnCadastrarClient.setPreferredSize(new Dimension(200, 40));
-        btnVizualizarClientes.setPreferredSize(new Dimension(200, 40));
-        btnVizualizarProdutos.setPreferredSize(new Dimension(200, 40));
-        //ImageIcon original = new ImageIcon("img/icon.png");
-        //Image imagem = original.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-        //labelImg.setIcon(new ImageIcon(imagem));
+        btnVisualizarClientes.setPreferredSize(new Dimension(200, 40));
+        btnVisualizarProdutos.setPreferredSize(new Dimension(200, 40));
 
         setResizable(false);
         setLocationRelativeTo(null);
@@ -58,7 +59,7 @@ public class MenuApp extends JFrame{
             telaCliente.setVisible(true);
         });
 
-        btnVizualizarClientes.addActionListener(e -> {
+        btnVisualizarClientes.addActionListener(e -> {
                 // Abre a tela de listagem de clientes
                 ClientesView dialog = new ClientesView(clienteController);
                 dialog.setSize(500, 300);
@@ -66,7 +67,7 @@ public class MenuApp extends JFrame{
                 dialog.setVisible(true);
         });
 
-        btnVizualizarProdutos.addActionListener(e -> {
+        btnVisualizarProdutos.addActionListener(e -> {
             ProdutosView telaProdutos = new ProdutosView();
             telaProdutos.setSize(400,400);
             telaProdutos.setLocationRelativeTo(null);
