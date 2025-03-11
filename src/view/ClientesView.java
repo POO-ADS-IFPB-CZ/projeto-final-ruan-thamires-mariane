@@ -1,18 +1,22 @@
 package view;
 
 import Controller.ClienteController;
+import dao.ClienteDAO;
 import model.Cliente;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Set;
 
 public class ClientesView extends JDialog {
     private JPanel contentPane;
     private JTable tabelaClientes;
     private JButton buttonExcluir;
-    private JButton btnFechar;
+    private JButton editarClienteButton;
     private ClienteController clienteController;
 
     public ClientesView(ClienteController clienteController) {
@@ -30,13 +34,13 @@ public class ClientesView extends JDialog {
         // Inicializa os componentes
         contentPane = new JPanel(new BorderLayout());
         tabelaClientes = new JTable();
-        btnFechar = new JButton("Fechar");
-        buttonExcluir = new JButton("Excluir"); // Adicionado botão de exclusão
+        buttonExcluir = new JButton("Excluir");
+        editarClienteButton = new JButton("Editar");
 
         // Painel para os botões
         JPanel painelBotoes = new JPanel();
         painelBotoes.add(buttonExcluir);
-        painelBotoes.add(btnFechar);
+        painelBotoes.add(editarClienteButton); // Adicionando o botão ao painel
 
         // Adiciona a tabela e os botões ao painel
         contentPane.add(new JScrollPane(tabelaClientes), BorderLayout.CENTER);
@@ -46,9 +50,48 @@ public class ClientesView extends JDialog {
         setContentPane(contentPane);
 
         carregarClientes();
-        btnFechar.addActionListener(e -> dispose());
         buttonExcluir.addActionListener(e -> excluirCliente());
+        editarClienteButton.addActionListener(e -> editarCliente());
     }
+
+
+    private void editarCliente() {
+        int linhaSelecionada = tabelaClientes.getSelectedRow();
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione um cliente para editar.");
+            return;
+        }
+
+        int codCliente = Integer.parseInt(tabelaClientes.getValueAt(linhaSelecionada, 0).toString());
+        String novoCpf = JOptionPane.showInputDialog(this, "Novo CPF do cliente:", tabelaClientes.getValueAt(linhaSelecionada, 1));
+        String novoNome = JOptionPane.showInputDialog(this, "Novo nome do cliente:", tabelaClientes.getValueAt(linhaSelecionada, 2));
+        String novoEndereco = JOptionPane.showInputDialog(this, "Novo endereço do cliente:", tabelaClientes.getValueAt(linhaSelecionada, 3));
+        String novoTelefone = JOptionPane.showInputDialog(this, "Novo telefone do cliente:", tabelaClientes.getValueAt(linhaSelecionada, 4));
+
+        // Obtém o cliente existente
+        Cliente clienteExistente = clienteController.buscarClientePorCodigo(codCliente);
+        if (clienteExistente == null) {
+            JOptionPane.showMessageDialog(this, "Erro: Cliente não encontrado!");
+            return;
+        }
+
+        // Atualiza os dados se o usuário inseriu novos valores
+        if (novoCpf != null) clienteExistente.setCPF(novoCpf);
+        if (novoNome != null) clienteExistente.setNome(novoNome);
+        if (novoEndereco != null) clienteExistente.setEndereco(novoEndereco);
+        if (novoTelefone != null) clienteExistente.setTelefone(novoTelefone);
+
+        // Chama o metodo de atualização no controller
+        boolean atualizado = clienteController.atualizarCliente(clienteExistente);
+
+        if (atualizado) {
+            JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!");
+            carregarClientes(); // Atualiza a tabela na interface gráfica
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao atualizar o cliente!");
+        }
+    }
+
 
     private void carregarClientes() {
         List<Cliente> clientes = clienteController.listarClientes();

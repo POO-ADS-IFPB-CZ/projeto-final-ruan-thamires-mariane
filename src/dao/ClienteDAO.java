@@ -47,7 +47,6 @@ public class ClienteDAO {
         }
         return null;
     }
-
     public boolean excluir(int codCliente) {
         carregarClientes(); //garante que a lista fique atualizada
         boolean removido = clientes.removeIf(cliente -> cliente.getCodCliente() == codCliente);

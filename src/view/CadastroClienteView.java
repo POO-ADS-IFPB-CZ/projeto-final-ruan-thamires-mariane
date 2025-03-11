@@ -65,13 +65,14 @@ public class CadastroClienteView extends JDialog {
         });
 
         btnVisualizarClientes.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                // Abre a tela de listagem de clientes
-                ClientesView clientesView = new ClientesView(clienteController);
-                clientesView.setVisible(true);
+                ClientesView dialog = new ClientesView(clienteController);
+                dialog.setSize(500, 300);
+                dialog.setLocationRelativeTo(null);
+                dialog.setVisible(true);
             }
         });
-
     }
 
     private void onOK() { dispose(); }
