@@ -44,6 +44,10 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-13661010"/>
+              <enabled value="true"/>
+              <foreground color="-16777216"/>
+              <hideActionText value="false"/>
               <text value="Cadastrar Produto"/>
             </properties>
           </component>
@@ -52,6 +56,8 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-13661010"/>
+              <foreground color="-16777216"/>
               <text value="Cadastrar Cliente"/>
             </properties>
           </component>
@@ -60,6 +66,8 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-13661010"/>
+              <foreground color="-16777216"/>
               <text value="Visualizar Produtos"/>
             </properties>
           </component>
@@ -68,6 +76,8 @@
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-13661010"/>
+              <foreground color="-16777216"/>
               <text value="Visualizar Clientes"/>
             </properties>
           </component>
@@ -76,6 +86,8 @@
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-13661010"/>
+              <foreground color="-16777216"/>
               <text value="Realizar Venda"/>
             </properties>
           </component>
@@ -84,6 +96,8 @@
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-13661010"/>
+              <foreground color="-16777216"/>
               <text value="Visualizar Vendas"/>
             </properties>
           </component>
@@ -99,6 +113,8 @@
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-10703225"/>
+          <foreground color="-16777216"/>
           <text value="Finalizar"/>
         </properties>
       </component>
