@@ -63,6 +63,10 @@ public class RegistrarVenda extends JDialog {
                     JOptionPane.showMessageDialog(null, "Preencha todos os campos");
                     return false;
                 }
+                if (Integer.parseInt(campoValor.getText()) < 0){
+                    JOptionPane.showMessageDialog(null, "Erro: valor negativo");
+                    return false;
+                }
                 return true;
             }
         });
