@@ -4,8 +4,8 @@ import dao.VendaDAO;
 import model.Venda;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.awt.event.*;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class RegistrarVenda extends JDialog {
@@ -17,14 +17,17 @@ public class RegistrarVenda extends JDialog {
     private JFormattedTextField campoFormatData;
     private JTextField campoValor;
     private JTextField campoDescricao;
+    private JButton btnVisualizarVendas;
     private VendaDAO vendaDao;
 
     public RegistrarVenda() {
         setContentPane(contentPane);
         setModal(true);
+        setTitle("Registro de vendas");
         ImageIcon iconJanela = new ImageIcon("src/img/iconJanela.png");
         setIconImage(iconJanela.getImage());
         getRootPane().setDefaultButton(btnRegistarVenda);
+        vendaDao = new VendaDAO();
 
         btnRegistarVenda.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -32,27 +35,32 @@ public class RegistrarVenda extends JDialog {
                 if(validarCampos()){
                     String codString = campoCodigo.getText();
                     int cod = Integer.parseInt(codString);
-                    String cliente = campoCliente.getText();
+                    String nomeCliente = campoCliente.getText();
                     String valorString = campoValor.getText();
                     Double valor = Double.parseDouble(valorString);
                     String descricao = campoDescricao.getText();
-                    LocalDate data = LocalDate.now();
-                    Venda venda = new Venda(cod, cliente , valor, descricao, data);
-
-                    //vendaDao.salvarRegistros(venda);
+                    //LocalDate data = LocalDate.now();
+                    String dataString = campoFormatData.getText();
+                    LocalDate data = LocalDate.parse(dataString);
+                    Venda novaVenda = new Venda(cod, nomeCliente, valor, descricao, data);
+                    try {
+                        vendaDao.adicionarProduto(novaVenda);
+                    } catch (IOException | ClassNotFoundException ex) {
+                        throw new RuntimeException(ex);
+                    }
 
                     //onOK();
                 }
                 campoCodigo.setText("");
                 campoCliente.setText("");
                 campoValor.setText("");
+                campoDescricao.setText("");
                 campoFormatData.setText("");
             }
             private boolean validarCampos() {
                 if(campoCodigo.getText().isEmpty() || campoCliente.getText().isEmpty() ||
-                        campoValor.getText().isEmpty() ){
-                    JOptionPane.showMessageDialog(null,
-                            "Preencha todos os campos");
+                        campoValor.getText().isEmpty() || campoDescricao.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos");
                     return false;
                 }
                 return true;
@@ -65,22 +73,29 @@ public class RegistrarVenda extends JDialog {
             }
         });
 
+        btnVisualizarVendas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VendaView telaVendas = new VendaView();
+                telaVendas.setSize(500,500);
+                telaVendas.setLocationRelativeTo(null);
+                telaVendas.setVisible(true);
+            }
+        });
+
     }
 
-    private void onOK() {
-        // add your code here
-        dispose();
-    }
+    private void onOK() { dispose(); }
 
-    private void onCancel() {
-        // add your code here if necessary
-        dispose();
-    }
+    private void onCancel() { dispose(); }
 
+    /*
     public static void main(String[] args) {
         RegistrarVenda dialog = new RegistrarVenda();
-        dialog.pack();
+        dialog.setSize(500,500);
+        dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
         System.exit(0);
     }
+     */
 }

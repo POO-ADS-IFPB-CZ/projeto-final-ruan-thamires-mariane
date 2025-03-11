@@ -76,6 +76,21 @@ public class MenuApp extends JFrame{
             telaProdutos.setVisible(true);
         });
 
+
+        btnRealizarVenda.addActionListener(e -> {
+            RegistrarVenda telaVenda = new RegistrarVenda();
+            telaVenda.setSize(500,500);
+            telaVenda.setLocationRelativeTo(null);
+            telaVenda.setVisible(true);
+        });
+
+        btnVisualizarVendas.addActionListener(e -> {
+            VendaView vendasView = new VendaView();
+            vendasView.setSize(500, 500);
+            vendasView.setLocationRelativeTo(null);
+            vendasView.setVisible(true);
+        });
+
         btnFinalizar.addActionListener(e -> dispose());
     }
 

@@ -1,16 +1,16 @@
 package view;
 
-import dao.ProdutoDAO;
 import dao.VendaDAO;
-import model.Cliente;
-import model.Produto;
 import model.Venda;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -32,12 +32,12 @@ public class VendaView extends JDialog {
         setLocationRelativeTo(null);
 
         vendaDao = new VendaDAO();
-        //carregarTabela();
+        carregarTabelaVendas();
 
         btnExcluirVenda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //excluirVenda();
+                excluirVenda();
             }
         });
 
@@ -49,44 +49,75 @@ public class VendaView extends JDialog {
         });
     }
 
+    private void carregarTabelaVendas() {
+        Set<Venda> vendas;
+        try {
+            vendas = vendaDao.getVendas();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (vendas != null) {
+            String colunas[] = {"Código", "Cliente", "Valor", "Descrição", "Data"};
+            String conteudo[][] = new String[vendas.size()][5];
+
+            List<Venda> listVendas = new ArrayList<>(vendas);
+            listVendas.sort(Comparator.comparingInt(Venda::getCodVenda));
+
+            for (int i = 0; i < listVendas.size(); i++) {
+                conteudo[i][0] = String.valueOf(listVendas.get(i).getCodVenda());
+                conteudo[i][1] = listVendas.get(i).getCliente();
+                conteudo[i][2] = String.valueOf(listVendas.get(i).getValor());
+                conteudo[i][3] = listVendas.get(i).getDescricao();
+                conteudo[i][4] = String.valueOf(listVendas.get(i).getDataRegistro());
+            }
+
+            tabelaVendas.setModel(new DefaultTableModel(conteudo, colunas));
+
+        }
+    }
+
     private void editarVenda() {
         int linhaSelecionada = tabelaVendas.getSelectedRow();
         if (linhaSelecionada == -1) {
-            JOptionPane.showMessageDialog(this, "Selecione um produto para editar.");
+            JOptionPane.showMessageDialog(this, "Selecione um registro de venda para editar.");
             return;
         }
         int codigo = Integer.parseInt(tabelaVendas.getValueAt(linhaSelecionada, 0).toString());
 
-        String nomeCliente = (String) tabelaVendas.getValueAt(linhaSelecionada, 1);
+        String nomeCliente = JOptionPane.showInputDialog(this, "Novo cliente da venda:", tabelaVendas.getValueAt(linhaSelecionada, 1));
         String stringNovoValor = JOptionPane.showInputDialog(this, "Novo valor da venda:", tabelaVendas.getValueAt(linhaSelecionada, 2));
         double novoValor = Double.parseDouble(stringNovoValor);
         String novaDescricao = JOptionPane.showInputDialog(this, "Nova descrição para a venda:", tabelaVendas.getValueAt(linhaSelecionada, 3));
-        LocalDate data = (LocalDate) tabelaVendas.getValueAt(linhaSelecionada, 4);
-        Venda vendaAtualizada = new Venda(codigo, nomeCliente, novoValor, novaDescricao, data);
+        String dataString = JOptionPane.showInputDialog(this, "Nova data da venda (AAAA-MM-DD):", tabelaVendas.getValueAt(linhaSelecionada, 4));
+        LocalDate novaData = LocalDate.parse(dataString);
+
+
+        Venda vendaAtualizada = new Venda(codigo, nomeCliente, novoValor, novaDescricao, novaData);
 
         System.out.println(vendaAtualizada.toString());
-        /*
-        if (novoValor != 0 && novaDescricao != null) {
+
+        if (novoValor != 0 && nomeCliente != "") {
             try {
-                List<Venda> listVendas = vendaDao.listarTodos();
+                Set<Venda> listVendas = vendaDao.getVendas();
                 for (Venda v : listVendas) {
                     if (v.getCodVenda() == codigo) {
+                        v.setCliente(nomeCliente);
                         v.setValor(novoValor);
                         v.setDescricao(novaDescricao);
-                        vendaDao.editar(v);
+                        v.setDataRegistro(novaData);
+                        vendaDao.atualizarVenda(v);
                         break;
                     }
                 }
-                //carregarTabela();
+                carregarTabelaVendas();
                 JOptionPane.showMessageDialog(this, "Registro de venda atualizado com sucesso.");
             } catch (IOException | ClassNotFoundException e) {
                 JOptionPane.showMessageDialog(this, "Erro ao atualizar registro de venda.");
             }
-
         }
-         */
     }
-    /*
+
     private void excluirVenda(){
         int linhaSelecionada = tabelaVendas.getSelectedRow();
         if (linhaSelecionada == -1) {
@@ -97,17 +128,20 @@ public class VendaView extends JDialog {
         int codigo = Integer.parseInt(tabelaVendas.getValueAt(linhaSelecionada, 0).toString());
 
         try {
-            vendaDao.excluir(codigo);
-            JOptionPane.showMessageDialog(this, "Produto excluído com sucesso.");
+            vendaDao.removerVenda(codigo);
+            carregarTabelaVendas();
+            JOptionPane.showMessageDialog(this, "Venda excluída com sucesso.");
         } catch (IOException | ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(this, "Erro ao excluir produto.");
+            JOptionPane.showMessageDialog(this, "Erro ao excluir venda.");
         }
     }
-    */
+    /*
     public static void main(String[] args) {
         VendaView dialog = new VendaView();
-        dialog.pack();
+        dialog.setSize(500, 500);
+        dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
         System.exit(0);
     }
+    */
 }
