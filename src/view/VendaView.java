@@ -28,7 +28,7 @@ public class VendaView extends JDialog {
         setTitle("Gerenciamento de Vendas");
         ImageIcon iconJanela = new ImageIcon("src/img/iconJanela.png");
         setIconImage(iconJanela.getImage());
-        setSize(500, 400);
+        setSize(600, 600);
         setLocationRelativeTo(null);
 
         vendaDao = new VendaDAO();

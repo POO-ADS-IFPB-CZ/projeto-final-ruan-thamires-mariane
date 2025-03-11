@@ -31,7 +31,7 @@ public class MenuApp extends JFrame{
         setTitle("Sistema do Consultor");
         iconJanela = new ImageIcon("src/img/iconJanela.png");
         setIconImage(iconJanela.getImage());
-        setSize(600,600);
+        setSize(800,800);
 
         btnFinalizar.setPreferredSize(new Dimension(150, 40));
         btnCadastrarProd.setPreferredSize(new Dimension(200, 40));
@@ -46,7 +46,7 @@ public class MenuApp extends JFrame{
 
         btnCadastrarProd.addActionListener(e -> {
             CadastroProdutoView telaProduto = new CadastroProdutoView();
-            telaProduto.setSize(400,400);
+            telaProduto.setSize(600,600);
             telaProduto.setLocationRelativeTo(null);
             telaProduto.setVisible(true);
             //dispose(); //fecha o menu
@@ -56,7 +56,7 @@ public class MenuApp extends JFrame{
 
         btnCadastrarClient.addActionListener(e -> {
             CadastroClienteView telaCliente = new CadastroClienteView(clienteController);
-            telaCliente.setSize(400,400);
+            telaCliente.setSize(600,600);
             telaCliente.setLocationRelativeTo(null);
             telaCliente.setVisible(true);
         });
@@ -64,14 +64,14 @@ public class MenuApp extends JFrame{
         btnVisualizarClientes.addActionListener(e -> {
             // Abre a tela de listagem de clientes
             ClientesView dialog = new ClientesView(clienteController);
-            dialog.setSize(500, 300);
+            dialog.setSize(600, 600);
             dialog.setLocationRelativeTo(null);
             dialog.setVisible(true);
         });
 
         btnVisualizarProdutos.addActionListener(e -> {
             ProdutosView telaProdutos = new ProdutosView();
-            telaProdutos.setSize(400,400);
+            telaProdutos.setSize(600,600);
             telaProdutos.setLocationRelativeTo(null);
             telaProdutos.setVisible(true);
         });
@@ -79,14 +79,14 @@ public class MenuApp extends JFrame{
 
         btnRealizarVenda.addActionListener(e -> {
             RegistrarVenda telaVenda = new RegistrarVenda();
-            telaVenda.setSize(500,500);
+            telaVenda.setSize(600,600);
             telaVenda.setLocationRelativeTo(null);
             telaVenda.setVisible(true);
         });
 
         btnVisualizarVendas.addActionListener(e -> {
             VendaView vendasView = new VendaView();
-            vendasView.setSize(500, 500);
+            vendasView.setSize(600, 600);
             vendasView.setLocationRelativeTo(null);
             vendasView.setVisible(true);
         });

@@ -26,7 +26,7 @@ public class ClientesView extends JDialog {
         setIconImage(iconJanela.getImage());
 
         setTitle("Lista de Clientes");
-        setSize(500, 300);
+        setSize(600, 600);
         setLocationRelativeTo(null);
         setModal(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

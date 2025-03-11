@@ -73,7 +73,7 @@ public class CadastroProdutoView extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 ProdutosView telaProdutos = new ProdutosView();
                 setVisible(false);
-                telaProdutos.setSize(400,400);
+                telaProdutos.setSize(600,600);
                 telaProdutos.setLocationRelativeTo(null);
                 telaProdutos.setVisible(true);
                 setVisible(true);

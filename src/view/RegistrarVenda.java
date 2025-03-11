@@ -81,7 +81,7 @@ public class RegistrarVenda extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 VendaView telaVendas = new VendaView();
-                telaVendas.setSize(500,500);
+                telaVendas.setSize(600,600);
                 telaVendas.setLocationRelativeTo(null);
                 telaVendas.setVisible(true);
             }

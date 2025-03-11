@@ -68,7 +68,7 @@ public class CadastroClienteView extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ClientesView dialog = new ClientesView(clienteController);
-                dialog.setSize(500, 300);
+                dialog.setSize(600, 600);
                 dialog.setLocationRelativeTo(null);
                 dialog.setVisible(true);
             }
