@@ -10,6 +10,7 @@ import java.util.Set;
 public class ProdutoDAO {
     private File arquivo;
 
+    //construtor, inicializa o arquivo
     public ProdutoDAO() {
         arquivo = new File("Produtos");
         if (!arquivo.exists()) {

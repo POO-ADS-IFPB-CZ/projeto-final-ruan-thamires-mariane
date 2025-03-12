@@ -99,14 +99,6 @@
               <text value="Tipo"/>
             </properties>
           </component>
-          <component id="8df4" class="javax.swing.JTextField" binding="campoTipo">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
-          </component>
           <component id="f3480" class="javax.swing.JTextField" binding="campoNome">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -122,6 +114,27 @@
               </grid>
             </constraints>
             <properties/>
+          </component>
+          <component id="f3b8b" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="3" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <enabled value="true"/>
+              <model>
+                <item value=""/>
+                <item value="Perfumaria"/>
+                <item value="Maquiagem"/>
+                <item value="Tratamento Corporal"/>
+                <item value="Tratamento Facial"/>
+                <item value="Tratamento Capilar"/>
+                <item value="Linha Infantil"/>
+                <item value="Linha Masculina"/>
+                <item value="Proteção Solar"/>
+              </model>
+              <toolTipText value=""/>
+            </properties>
           </component>
         </children>
       </grid>

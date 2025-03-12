@@ -15,6 +15,7 @@ public class CadastroProdutoView extends JDialog {
     private JTextField campoNome;
     private JTextField campoTipo;
     private JButton btnVisualizarProdutos;
+    private JComboBox comboBox1;
     private ProdutoDAO produtoDAO;
 
     public CadastroProdutoView() {
@@ -33,7 +34,7 @@ public class CadastroProdutoView extends JDialog {
                     String codString = campoCodigo.getText();
                     int cod = Integer.parseInt(codString);
                     String nome = campoNome.getText();
-                    String tipo = campoTipo.getText();
+                    String tipo = (String) comboBox1.getSelectedItem();
                     Produto produto = new Produto(cod, nome , tipo);
                     try {
                         produtoDAO.adicionarProduto(produto);
@@ -44,14 +45,13 @@ public class CadastroProdutoView extends JDialog {
                 }
                 campoCodigo.setText("");
                 campoNome.setText("");
-                campoTipo.setText("");
+                comboBox1.setSelectedIndex(0);
 
             }
 
             private boolean validarCampos() {
                 if(campoCodigo.getText().isEmpty() ||
-                        campoNome.getText().isEmpty() ||
-                        campoTipo.getText().isEmpty() ){
+                        campoNome.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null,
                             "Preencha todos os campos");
                     return false;
